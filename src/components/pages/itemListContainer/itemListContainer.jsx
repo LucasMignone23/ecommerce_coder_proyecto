@@ -1,5 +1,4 @@
 import "./ItemListContainer.css";
-import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { ProductCard } from "../../common/productCard/productCard";
 
 export const ItemListContainer = ({ greeting }) => {
