@@ -1,28 +1,28 @@
 .container-nav {
   display: flex;
   justify-content: space-between;
-  background-color: steelblue;
+  background-color: #fbf9f6;
+  color: #4f3018;
   align-items: center;
-  height: 50px;
-  padding: 0 50px;
-}
-
-.container-nav-dark {
-  display: flex;
-  justify-content: space-between;
-  background-color: black;
-  color: white;
-  align-items: center;
-  height: 50px;
+  height: 80px;
   padding: 0 50px;
 }
 
 .container-nav ul {
   display: flex;
-  justify-content: center;
-  gap: 10px;
+  gap: 100px;
+}
+
+.logo {
+  height: 100px;
+  cursor: pointer;
 }
 
 li {
   list-style: none;
+  cursor: pointer;
+}
+
+.cart {
+  cursor: pointer;
 }

@@ -1,0 +1,15 @@
+.productos {
+  display: grid;
+  grid-template-columns: repeat(5, 2fr);
+  grid-template-rows: auto;
+  padding-top: 20px;
+  height: 100vh;
+  margin: 0;
+  justify-items: center;
+}
+
+.card {
+  height: 400px;
+  width: 250px;
+  background-color: #e9d6c5;
+}
