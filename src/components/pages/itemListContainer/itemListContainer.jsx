@@ -1,4 +1,4 @@
-import "./ItemListContainer.css";
+import "./itemListContainer.css";
 import { ProductCard } from "../../common/productCard/productCard";
 
 export const ItemListContainer = ({ greeting }) => {
