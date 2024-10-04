@@ -3,7 +3,7 @@ import ItemDetail from './itemDetail';
 import { products } from '../../../productsMock';
 import { useParams } from 'react-router-dom';
 
-const itemDetailContainer = () => {
+const ItemDetailContainer = () => {
   //Hook ----> Recuperar la parte dinamica de la ruta
   const {item, setItem} = useState({});
 
@@ -17,4 +17,4 @@ const itemDetailContainer = () => {
   return <ItemDetail/>;
 }
 
-export default itemDetailContainer
+export default ItemDetailContainer
