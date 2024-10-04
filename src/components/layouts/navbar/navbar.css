@@ -1,16 +1,12 @@
 .container-nav {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Para mantener el espacio entre los elementos en desktop */
+  align-items: center;
   background-color: #fbf9f6;
   color: #4f3018;
-  align-items: center;
   height: 80px;
   padding: 0 50px;
-}
-
-.container-nav ul {
-  display: flex;
-  gap: 100px;
+  position: relative; /* Necesario para el dropdown */
 }
 
 .logo {
@@ -18,11 +14,128 @@
   cursor: pointer;
 }
 
+/* Listado de categorías clickeables */
+.container-nav ul {
+  display: flex; /* Mostrar el menú en desktop */
+  gap: 100px; /* Espaciado entre los elementos */
+}
+
+/* Estilo de los ítems del menú */
 li {
   list-style: none;
   cursor: pointer;
+  position: relative; /* Necesario para el dropdown */
+}
+
+/* Dropdown oculto por defecto */
+.dropdown .dropdown-content {
+  display: none; /* Oculto por defecto */
+  position: absolute;
+  background-color: #fbf9f6;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+  padding: 10px;
+  z-index: 1;
+  top: 100%; /* Asegura que el menú aparezca debajo de "PRODUCTOS" */
+  left: 0;
+  flex-direction: column;
+}
+
+/* Mostrar dropdown al pasar el mouse sobre "PRODUCTOS" */
+.dropdown:hover .dropdown-content {
+  display: block; /* Se muestra el menú al pasar el mouse sobre "PRODUCTOS" */
+}
+
+.dropdown-content li {
+  padding: 10px;
+  text-align: left;
+}
+
+.dropdown-content li:hover {
+  background-color: #f1f1f1;
 }
 
 .cart {
   cursor: pointer;
+}
+
+/* Estilos del menú hamburguesa */
+.hamburger {
+  display: none; /* Ocultar el menú hamburguesa por defecto */
+  flex-direction: column;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.line {
+  transition: all 0.3s ease;
+}
+
+/* Estilos para el menú */
+.nav-links {
+  display: flex; /* Mostrar el menú en desktop */
+  gap: 100px; /* Espacio entre elementos en desktop */
+}
+
+.nav-links.open {
+  display: block; /* Mostrar el menú cuando está abierto */
+  position: absolute; /* Posicionar de forma absoluta para cubrir el ancho */
+  top: 80px; /* Colocarlo debajo de la barra de navegación */
+  left: 0;
+  right: 0;
+  background-color: #fbf9f6; /* Color de fondo del menú */
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  /* Mostrar el menú hamburguesa en pantallas pequeñas */
+  .hamburger {
+    display: flex; /* Mostrar el botón de menú */
+  }
+
+  /* Ocultar el listado de categorías en pantallas pequeñas */
+  .container-nav ul {
+    display: none; /* Ocultar el menú de navegación en pantallas pequeñas */
+  }
+
+  /* Centrar el logo en mobile */
+  .logo {
+    position: absolute; /* Centrar el logo en mobile */
+    left: 50%;
+    transform: translateX(-50%); /* Centrar horizontalmente */
+  }
+
+  /* Mostrar el menú cuando está abierto */
+  .nav-links.open {
+    display: block; /* Mostrar el menú de navegación */
+    width: 100%; /* Cubrir todo el ancho de la pantalla */
+    height: 200px; /* Cubrir todo el alto de la pantalla */
+  }
+
+  .nav-links li {
+    margin-top: 15px;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .nav-links .dropdown-content{
+    display: none; /* Oculto por defecto */
+    position: absolute;
+    background-color: #fbf9f6;
+    min-width: 200px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 1;
+    top: 100%; /* Asegura que el menú aparezca debajo de "PRODUCTOS" */
+    left: 50%; /* Mueve el menú al 50% del ancho de su contenedor padre */
+    transform: translateX(-50%); /* Centra el menú horizontalmente */
+    flex-direction: column;
+  }
+}
+
+a{
+  text-decoration: none;
+  color: #4f3018;
 }

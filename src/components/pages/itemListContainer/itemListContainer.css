@@ -1,10 +1,8 @@
 .productos {
   display: grid;
-  grid-template-columns: repeat(5, 2fr);
-  grid-template-rows: auto;
-  padding-top: 20px;
-  height: 100vh;
-  margin: 0;
+  grid-template-columns: repeat(4, 1fr); /* 4 columnas por defecto */
+  grid-gap: 20px; /* Espaciado entre las tarjetas */
+  padding: 25px 200px; /* Separación de 100px a los lados */
   justify-items: center;
 }
 
@@ -12,4 +10,38 @@
   height: 400px;
   width: 250px;
   background-color: #e9d6c5;
+}
+
+/* Media queries para pantallas más pequeñas */
+
+/* Para pantallas entre 1024px y 1280px (tablet y laptops medianas) */
+@media screen and (max-width: 1280px) {
+  .productos {
+    grid-template-columns: repeat(3, 1fr); /* 3 columnas */
+    padding: 25px 50px; /* Reducir padding lateral */
+  }
+}
+
+/* Para pantallas entre 768px y 1024px (tablets en vertical y algunas laptops pequeñas) */
+@media screen and (max-width: 1024px) {
+  .productos {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    padding: 25px 30px;
+  }
+}
+
+/* Para pantallas más pequeñas, entre 480px y 768px (teléfonos grandes o tablets) */
+@media screen and (max-width: 768px) {
+  .productos {
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas */
+    padding: 25px 15px; /* Aún menos padding lateral */
+  }
+}
+
+/* Para pantallas muy pequeñas (teléfonos móviles) */
+@media screen and (max-width: 480px) {
+  .productos {
+    grid-template-columns: 1fr; /* 1 columna */
+    padding: 25px 10px; /* Menos padding lateral */
+  }
 }
