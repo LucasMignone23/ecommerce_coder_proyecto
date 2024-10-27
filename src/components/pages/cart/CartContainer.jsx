@@ -1,8 +1,21 @@
-import React from 'react'
-import Cart from './Cart'
+import React, { useContext } from "react";
+import Cart from "./Cart";
+import { CartContext } from "../../../context/CartContext";
 
 const CartContainer = () => {
-  return <Cart />
-}
+  const { cart, clearCart, deleteProductById, getTotalAmount } =
+    useContext(CartContext);
 
-export default CartContainer
+  let total = getTotalAmount(); // 500
+
+  return (
+    <Cart
+      cart={cart}
+      clearCart={clearCart}
+      deleteProductById={deleteProductById}
+      total={total}
+    />
+  );
+};
+
+export default CartContainer;

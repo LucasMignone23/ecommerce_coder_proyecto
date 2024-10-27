@@ -3,6 +3,8 @@ import { products } from "../../../productsMock";
 import { useEffect, useState } from "react";
 import { ItemList } from "./itemList";
 import { useParams } from "react-router-dom";
+import { db } from "../../../firebaseConfig";
+import { addDoc, collection, getDocs, query, where } from "firebase/firestore";
 
 export const ItemListContainer = () => {
   const [items, setItems] = useState([]);
@@ -10,28 +12,40 @@ export const ItemListContainer = () => {
   const { categoryName } = useParams(); //Devuelve un objeto con la parte dinamica de la ruta
 
   useEffect(() => {
-    const filteredProducts = products.filter((product)=> product.category === categoryName); 
-    //Crear una promesa
-    const getProducts = new Promise((resolve, reject) => {
-      let isLogued = true;
-      if (isLogued) {
-        resolve(categoryName? filteredProducts : products); //Si categoryName existe, retorna filteredProducts, si no, retorna products que seria todos los productos.
-      } else {
-        reject({ Message: "Algo salio mal" });
-      }
-    });
+    let productsCollection = collection(db, "products");
 
-    //Manejar la promesa
-    getProducts
-      .then((response) => {
-        setItems(response);
-      })
-      .catch((error) => {
-        console.log("entro en el cath", error);
+    let consulta = productsCollection; // el va saber a quien pedirle los documentos si a todos o a una parte
+
+    if (categoryName) {
+      let productsCollectionFiltered = query(
+        productsCollection,
+        where("category", "==", categoryName)
+      );
+      consulta = productsCollectionFiltered;
+    }
+
+    getDocs(consulta).then((res) => {
+      let array = res.docs.map((elemento) => {
+        return { ...elemento.data(), id: elemento.id };
       });
+
+      setItems(array);
+    });
   }, [categoryName]);
 
-  return <ItemList items={items} />;
+//  const agregarProductos = () => {
+//     products.forEach((producto) => {
+ //     addDoc(collection(db, "products"), producto);
+//   });
+//   };
+ 
+
+  return (
+    <>
+      <ItemList items={items} />
+     {/*<button onClick={agregarProductos}>Agregar</button>*/ } 
+    </>
+  );
 };
 
 export default ItemListContainer;

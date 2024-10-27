@@ -1,20 +1,42 @@
-import React, {useEffect, useState } from 'react'
-import ItemDetail from './itemDetail';
-import { products } from '../../../productsMock';
-import { useParams } from 'react-router-dom';
+import React, { useContext, useEffect, useState } from "react";
+import ItemDetail from "./ItemDetail";
+import { useParams } from "react-router-dom";
+import { CartContext } from "../../../context/CartContext";
+import { toast } from "sonner";
+import { collection, doc, getDoc } from "firebase/firestore";
+import { db } from "../../../firebaseConfig";
 
 const ItemDetailContainer = () => {
-  //Hook ----> Recuperar la parte dinamica de la ruta
+  // hook --> recuperar la parte dinamica de la ruta
   const [item, setItem] = useState({});
+  const { addToCart, getTotalQuantityById } = useContext(CartContext);
 
-  const { id } = useParams(); //Devuelve un objeto
+  const { id } = useParams(); // devuelve un objeto {}
 
-  useEffect(()=>{
-    let product = products.find(product => product.id === id);
-    setItem(product);
-  },[id]);
+  let totalItems = getTotalQuantityById(id);
 
-  return <ItemDetail item={item}/>;
-}
+  // const navigate = useNavigate();
+
+  useEffect(() => {
+    let productsCollection = collection(db, "products");
+    let refDoc = doc(productsCollection, id);
+    getDoc(refDoc).then((res) => {
+      setItem({ ...res.data(), id: res.id });
+    });
+  }, [id]);
+
+  const onAdd = (quantity) => {
+    let productoParaElCarrito = { ...item, quantity };
+    addToCart(productoParaElCarrito);
+
+    toast.success("Se agrego el producto", {
+      closeButton: true,
+      description: "algo mas",
+      position: "top-center",
+    });
+  };
+
+  return <ItemDetail item={item} onAdd={onAdd} totalItems={totalItems} />;
+};
 
 export default ItemDetailContainer;
