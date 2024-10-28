@@ -1,5 +1,4 @@
 import "./itemListContainer.css";
-import { products } from "../../../productsMock";
 import { useEffect, useState } from "react";
 import { ItemList } from "./itemList";
 import { useParams } from "react-router-dom";
