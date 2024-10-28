@@ -2,13 +2,13 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDgvHnjh0J1Qe6dfY1WZVuCzSGlWN6lbQk",
-  authDomain: "ecommercephina.firebaseapp.com",
-  projectId: "ecommercephina",
-  storageBucket: "ecommercephina.appspot.com",
-  messagingSenderId: "624247508524",
-  appId: "1:624247508524:web:23613aa2e3d9d8cb128b89",
-  measurementId: "G-357CM99S2N"
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH,
+  projectId:import.meta.env.VITE_PROJECT,
+  storageBucket: import.meta.env.VITE_STORAGE,
+  messagingSenderId: import.meta.env.VITE_MESSAGING,
+  appId: import.meta.env.VITE_APP_ID,
+  measurementId: import.meta.env.VITE_MEASURE
 };
 
 // Initialize Firebase
