@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { CartContext } from "../../../context/CartContext";
 import { db } from "../../../firebaseConfig";
 import { collection, addDoc, updateDoc, doc } from "firebase/firestore";
+import "./checkout.css";
 
 const Checkout = () => {
   const [user, setUser] = useState({
@@ -72,28 +73,28 @@ const Checkout = () => {
   }
 
   return (
-    <div>
+    <div className="checkout">
       {orderId ? (
-        <h1>Gracias por tu compra, el numero de orden es: {orderId}</h1>
+        <h1>Gracias por tu compra, el numero de orden es: {orderId}, nos contactaremos por email para finalizar el pago</h1>
       ) : (
         <form onSubmit={handleSubmit}>
           <input
             type="text"
-            placeholder="name"
+            placeholder="Name"
             onChange={handleChange}
             name="name"
           />
           <span>{errors.name}</span>
           <input
             type="number"
-            placeholder="telefono"
+            placeholder="Telefono"
             onChange={handleChange}
             name="phone"
             required
           />
           <input
             type="text"
-            placeholder="email"
+            placeholder="Email"
             onChange={handleChange}
             name="email"
           />
