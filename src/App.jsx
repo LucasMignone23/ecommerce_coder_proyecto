@@ -5,6 +5,7 @@ import CartContainer from "./components/pages/cart/CartContainer";
 import ItemDetailContainer from "./components/pages/itemDetail/ItemDetailContainer";
 import { CartContextProvider } from "./context/CartContext";
 import Checkout from "./components/pages/checkout/Checkout";
+import { Footer } from "./components/layouts/footer/Footer";
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <Route path={"/checkout"} element={<Checkout />} />
         <Route path="*" element={<h2>404 not found</h2>}/>
       </Routes>
+      <Footer />
       </CartContextProvider>
       </BrowserRouter>
     </div>

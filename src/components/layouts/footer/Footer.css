@@ -1,0 +1,51 @@
+/* General styles */
+a {
+    text-decoration: none;
+}
+
+.footer {
+    background-color: #fbf9f6;
+    color: #4f3018;
+    padding: 20px;
+}
+
+.footer .contacto {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.footer .redes {
+    display: flex;
+    align-items: center;
+}
+
+.footer .redes a {
+    margin-left: 5px;
+}
+
+.footer .desarrollo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.footer .desarrollo p {
+    margin-top: 5px;
+    color: gray;
+    font-weight: bold;
+}
+
+
+/* Media Queries */
+
+@media (max-width: 768px) {
+
+
+    .footer .contacto {
+        display: grid;
+        justify-content: center;
+        align-items: center;
+        gap: 110px;
+    }
+}
