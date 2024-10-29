@@ -1,0 +1,30 @@
+.botones-contador {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+.botones-contador button {
+    background-color: #fbf9f6;
+    border: none;
+    height: 90px;
+    width: 180px;
+    color: #4f3018;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 20px;
+}
+
+/* Media Queries */
+
+@media (max-width: 768px) {
+
+    .botones-contador button {
+        width: 100px;
+        height: 60px;
+        font-size: 12px;
+    }
+}
