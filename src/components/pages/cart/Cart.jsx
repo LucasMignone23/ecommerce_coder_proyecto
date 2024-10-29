@@ -2,13 +2,10 @@ import { Button } from "@mui/material";
 import React from "react";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import "./Cart.css";
 
-const Cart = ({ cart, clearCart, deleteProductById, total }) => {
-  // if (total === 0) {
-  //   return <h1>no hay nada</h1>;
-  // }
-
-  const limpiarConAlert = () => {
+const Cart = ({ cart, clearCart, deleteProductById, total }) => { 
+  const limpiarConAlert = () => { 
     Swal.fire({
       title: "seguro quieres limpiar?",
       showConfirmButton: true,
@@ -36,46 +33,39 @@ const Cart = ({ cart, clearCart, deleteProductById, total }) => {
 
   return (
     <div style={{ padding: "50px" }}>
-      <h2>Este es el carrito</h2>
       {cart.map((product) => {
         return (
           <div key={product.id}>
-            <h2>Titulo {product.title}</h2>
-            <h3>Precio {product.price}</h3>
-            <h3>Cantidad {product.quantity}</h3>
+            <div className="producto-carrito">
+            <img className="img-carrito" src={product.imageUrl} alt="" />
+            <h2>{product.title}</h2>
+            <h3>$ {product.price}</h3>
+            <h3>Cant : {product.quantity}</h3>
             <h3>Subtotal : {product.price * product.quantity}</h3>
-            <Button
-              variant="contained"
-              onClick={() => deleteProductById(product.id)}
-            >
-              Eliminar
-            </Button>
+            <button className="eliminar" onClick={() => deleteProductById(product.id)}>Eliminar</button>
+            </div> 
           </div>
         );
       })}
 
       {total > 0 && (
         <>
-          <Button
-            sx={{ marginTop: 20 }}
-            variant="contained"
-            onClick={limpiarConAlert}
-          >
-            Limpiar carrito
-          </Button>
+        <div className="finalizar">
+        <button className="limpiar-carrito" onClick={limpiarConAlert}>Limpiar carrito</button>
           <Link to="/checkout">
-            <Button sx={{ marginTop: 20 }} variant="contained">
-              Finalizar compra
-            </Button>
+            <button className="finalizar-compra">Finalizar compra</button>
           </Link>
+        </div>
         </>
       )}
-
+      <div className="total">
       {total > 0 ? (
         <h2>El total a pagar es : $ {total}</h2>
       ) : (
         <h2>No tienes elementos todavia</h2>
       )}
+      </div>
+    
     </div>
   );
 };

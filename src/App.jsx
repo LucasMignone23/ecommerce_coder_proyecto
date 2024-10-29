@@ -10,10 +10,11 @@ import { Footer } from "./components/layouts/footer/Footer";
 
 function App() {
   return (
-    <div>
+    <div className="root">
       <BrowserRouter>
       <CartContextProvider>
       <Navbar />
+      <div className="main-content">
       <Routes>
         <Route path="/" element={<ItemListContainer />} />
         <Route path="/category/:categoryName" element={<ItemListContainer />}/>
@@ -22,6 +23,7 @@ function App() {
         <Route path={"/checkout"} element={<Checkout />} />
         <Route path="*" element={<h2>404 not found</h2>}/>
       </Routes>
+      </div>
       <Footer />
       </CartContextProvider>
       </BrowserRouter>
